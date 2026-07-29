@@ -8,7 +8,7 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -17,6 +17,7 @@
             --primary-color: #00a8a8;
             --secondary-color: #2c3e50;
             --light-bg: #f8f9fa;
+            --border-color: #e9ecef;
         }
 
         body { font-family: 'Poppins', sans-serif; color: var(--secondary-color); }
@@ -25,6 +26,8 @@
         .navbar-brand { font-weight: 600; color: var(--primary-color) !important; }
         .btn-primary { background-color: var(--primary-color); border: none; }
         .btn-primary:hover { background-color: #008686; }
+        .btn-outline-primary { color: var(--primary-color); border-color: var(--primary-color); }
+        .btn-outline-primary:hover { background-color: var(--primary-color); border-color: var(--primary-color); }
 
         /* Hero Section */
         .hero {
@@ -37,29 +40,91 @@
             text-align: center;
         }
 
-        /* Service Cards */
+        /* Modern Compact Service Cards */
         .service-card {
-            border: none;
-            transition: transform 0.3s;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            background: #fff;
+            overflow: hidden;
+            height: 100%;
         }
-        .service-card:hover { transform: translateY(-10px); }
-        .icon-box {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 168, 168, 0.3);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        }
+        .service-img-wrapper {
+            overflow: hidden;
+            height: 140px;
+        }
+        .service-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .service-card:hover .service-img {
+            transform: scale(1.08);
+        }
+        .service-body {
+            padding: 1rem 1.2rem 1.2rem;
+            text-align: left;
+        }
+        .service-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .service-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .service-text {
+            font-size: 0.8rem;
+            color: #6c757d;
+            line-height: 1.4;
+            margin-bottom: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Hidden Services Toggle Animation */
+        .service-hidden {
+            display: none;
+        }
+        .service-hidden.show-service {
+            display: block;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Doctors Section */
         .doctor-card {
-            border: none;
-            transition: transform 0.3s;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: #fff;
             overflow: hidden;
         }
-        .doctor-card:hover { transform: translateY(-10px); }
+        .doctor-card:hover { 
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        }
         .doctor-img-wrapper {
             padding: 2rem 2rem 0;
             background-color: var(--light-bg);
@@ -81,6 +146,32 @@
             transition: color 0.3s;
         }
         .doctor-social a:hover { color: var(--primary-color); }
+
+        /* Visiting Consultants (No Image) */
+        .consultant-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            background: #fff;
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+        }
+        .consultant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            border-color: rgba(0, 168, 168, 0.3);
+        }
+        .consultant-icon {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background-color: rgba(0, 168, 168, 0.1);
+            color: var(--primary-color);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            margin: 0 auto 1rem;
+        }
 
         /* Gallery / Works Section */
         .ba-card {
@@ -109,47 +200,58 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+        
+        /* Other Works / Clinic Gallery Section */
         .work-card {
             position: relative;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 1.5rem;
+            height: 300px; /* Fixed height for uniform layout */
         }
         .work-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: transform 0.5s ease;
         }
         .work-card:hover .work-img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
         .work-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
             color: white;
-            padding: 20px;
+            padding: 30px 20px 20px;
             text-align: left;
+            transform: translateY(20px);
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: all 0.4s ease;
         }
         .work-card:hover .work-overlay {
+            transform: translateY(0);
             opacity: 1;
         }
+        .work-overlay h5 {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
 
-        /* About Section (New Format) */
+        /* About Section */
         .stat-card {
             background-color: white;
-            border: none;
+            border: 1px solid var(--border-color);
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
         }
-        .stat-card:hover { transform: translateY(-5px); }
+        .stat-card:hover { 
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        }
         .stat-number {
             font-size: 2.5rem;
             font-weight: 700;
@@ -191,9 +293,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#doctors">Doctors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#doctors">Team</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     <li class="nav-item"><a class="btn btn-primary ms-lg-3 text-white" href="tel:+1234567890">Call Now</a></li>
                 </ul>
@@ -212,53 +314,194 @@
 
     <!-- Services Section -->
     <section id="services" class="py-5">
-        <div class="container text-center">
-            <h2 class="mb-5 fw-bold">Our Services</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 p-4 service-card">
-                        <div class="icon-box"><i class="fas fa-stethoscope"></i></div>
-                        <h4>General Checkup</h4>
-                        <p class="text-muted">Comprehensive exams and professional cleaning to keep your smile healthy.</p>
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Our Services</h2>
+                <p class="text-muted">Comprehensive dental care for the whole family. Working Hours: 9:00 AM – 6:30 PM</p>
+            </div>
+            
+            <div class="row g-3 g-md-4">
+                <!-- Visible Services (1-4) -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/root_canal.avif" class="service-img" alt="Root Canal">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Root Canal</h6>
+                            <p class="service-text">Preserves and protects decayed or infected teeth from extraction using therapy.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100 p-4 service-card">
-                        <div class="icon-box"><i class="fas fa-magic"></i></div>
-                        <h4>Teeth Whitening</h4>
-                        <p class="text-muted">Brighten your smile with our professional, painless whitening treatments.</p>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/tooth extraction.webp" class="service-img" alt="Tooth Extraction">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Tooth Extraction</h6>
+                            <p class="service-text">Painless extraction of damaged or decayed teeth for children and adults.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100 p-4 service-card">
-                        <div class="icon-box"><i class="fas fa-tooth"></i></div>
-                        <h4>Dental Implants</h4>
-                        <p class="text-muted">Restorative solutions to replace missing teeth and regain confidence.</p>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/pedodonti.webp" class="service-img" alt="Pediatric Dentistry">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Pediatric Dentistry</h6>
+                            <p class="service-text">Specialty care to preserve children's teeth and guide permanent teeth.</p>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/braces.webp" class="service-img" alt="Orthodontics">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Orthodontics</h6>
+                            <p class="service-text">Realignment of crooked, crowded, or protruding teeth using dental braces.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden Services (5-12) -->
+                <div class="col-6 col-md-4 col-lg-3 service-hidden">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/teeth cleaning.webp" class="service-img" alt="Teeth Cleaning">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Teeth Cleaning</h6>
+                            <p class="service-text">Removes plaque, tartar, and stains to treat gum disease and bad breath.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3 service-hidden">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/Dentures.webp" class="service-img" alt="Dentures">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Dentures</h6>
+                            <p class="service-text">Fixed or removable custom artificial teeth to replace missing teeth.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3 service-hidden">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/implant.webp" class="service-img" alt="Dental Implants">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Dental Implants</h6>
+                            <p class="service-text">Permanent replacement teeth anchored directly into the jawbone.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3 service-hidden">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/smilec.png" class="service-img" alt="Smile Designing">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Smile Designing</h6>
+                            <p class="service-text">Modern cosmetic procedures to enhance and restore your smile naturally.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3 service-hidden">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/cosmetic_dentistry_tooth_colored_fillings_s9.webp" class="service-img" alt="Cavity Fillings">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Cavity Fillings</h6>
+                            <p class="service-text">Fills and protects decayed teeth, restoring natural color and shape.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3 service-hidden">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/aligners.avif" class="service-img" alt="Clear Aligners">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Clear Aligners</h6>
+                            <p class="service-text">Straightens crooked teeth discreetly without traditional metal braces.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3 service-hidden">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/crouwn.webp" class="service-img" alt="Crowns & Bridges">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Crowns & Bridges</h6>
+                            <p class="service-text">Durable, fixed artificial crowns to restore damaged or missing teeth.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3 service-hidden">
+                    <div class="service-card">
+                        <div class="service-img-wrapper">
+                            <img src="images/services/xray.webp" class="service-img" alt="Digital X-Ray">
+                        </div>
+                        <div class="service-body">
+                            <h6 class="service-title">Digital X-Ray</h6>
+                            <p class="service-text">Quick, high-precision advanced imaging for accurate diagnosis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toggle Button -->
+            <div class="text-center mt-5">
+                <button id="toggleServicesBtn" class="btn btn-outline-primary btn-lg px-4">
+                    Show All Services <i class="fas fa-chevron-down ms-2"></i>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Doctors Section -->
+    <!-- Team Section -->
     <section id="doctors" class="py-5 bg-light">
-        <div class="container text-center">
-            <h2 class="mb-5 fw-bold">Meet Our Doctors</h2>
-            <div class="row g-4 justify-content-center">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Our Team</h2>
+                <p class="text-muted">Meet the experts dedicated to your perfect smile.</p>
+            </div>
+
+            <!-- Chief Dental Surgeons (With Photos) -->
+            <h4 class="fw-bold mb-4 text-center" style="color: var(--primary-color);">Chief Dental Surgeons</h4>
+            <div class="row g-4 justify-content-center mb-5">
                 
                 <!-- Doctor 1 -->
                 <div class="col-md-6 col-lg-5">
-                    <div class="card h-100 doctor-card">
+                    <div class="doctor-card h-100">
                         <div class="doctor-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=400" class="doctor-img" alt="Dr. John Doe">
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=400" class="doctor-img" alt="Dr. Edbert Simon.K">
                         </div>
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-1">Dr. John Doe</h4>
-                            <p class="text-uppercase fw-bold text-muted mb-3" style="font-size: 0.85rem; letter-spacing: 1px; color: var(--primary-color) !important;">Chief Dental Surgeon</p>
-                            <p class="text-muted">With over 15 years of experience, Dr. Doe specializes in cosmetic dentistry and smile makeovers, ensuring every patient leaves with confidence.</p>
+                        <div class="card-body p-4 text-center">
+                            <h4 class="fw-bold mb-1">Dr. Edbert Simon.K</h4>
+                            <p class="text-uppercase fw-bold text-muted mb-3" style="font-size: 0.85rem; letter-spacing: 1px; color: var(--primary-color) !important;">BDS</p>
+                            <p class="text-muted">With extensive experience in general and cosmetic dentistry, Dr. Edbert leads our clinic with a commitment to gentle, patient-first care.</p>
                             <div class="doctor-social mt-3">
                                 <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
                                 <a href="#"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
@@ -267,91 +510,105 @@
 
                 <!-- Doctor 2 -->
                 <div class="col-md-6 col-lg-5">
-                    <div class="card h-100 doctor-card">
+                    <div class="doctor-card h-100">
                         <div class="doctor-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=400" class="doctor-img" alt="Dr. Jane Smith">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=400" class="doctor-img" alt="Dr. Anu Edbert">
                         </div>
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold mb-1">Dr. Jane Smith</h4>
-                            <p class="text-uppercase fw-bold text-muted mb-3" style="font-size: 0.85rem; letter-spacing: 1px; color: var(--primary-color) !important;">Orthodontist</p>
-                            <p class="text-muted">Dr. Smith is passionate about creating perfect smiles. She is an expert in braces, aligners, and pediatric dental care, making visits fun for all ages.</p>
+                        <div class="card-body p-4 text-center">
+                            <h4 class="fw-bold mb-1">Dr. Anu Edbert</h4>
+                            <p class="text-uppercase fw-bold text-muted mb-3" style="font-size: 0.85rem; letter-spacing: 1px; color: var(--primary-color) !important;">BDS</p>
+                            <p class="text-muted">Dr. Anu specializes in precision dentistry and patient comfort, ensuring every visit is a positive and pain-free experience.</p>
                             <div class="doctor-social mt-3">
                                 <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
                                 <a href="#"><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <hr class="my-5">
+
+            <!-- Visiting Consultants (No Photos, Icon Based) -->
+            <h4 class="fw-bold mb-4 text-center" style="color: var(--primary-color);">Visiting Consultants</h4>
+            <div class="row g-4 justify-content-center">
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="consultant-card">
+                        <div class="consultant-icon">
+                            <i class="fas fa-grip-lines"></i>
+                        </div>
+                        <h5 class="fw-bold mb-1">Dr. Hemanth Nandan</h5>
+                        <p class="text-uppercase fw-bold text-muted mb-2" style="font-size: 0.8rem; letter-spacing: 1px; color: var(--primary-color) !important;">BDS, MDS</p>
+                        <p class="text-muted mb-0" style="font-size: 0.9rem;">Orthodontist</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="consultant-card">
+                        <div class="consultant-icon">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                        <h5 class="fw-bold mb-1">Dr. Sreedevi Samjith</h5>
+                        <p class="text-uppercase fw-bold text-muted mb-2" style="font-size: 0.8rem; letter-spacing: 1px; color: var(--primary-color) !important;">BDS, MDS</p>
+                        <p class="text-muted mb-0" style="font-size: 0.9rem;">Root Canal Specialist</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="consultant-card">
+                        <div class="consultant-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h5 class="fw-bold mb-1">Dr. Manasi Menon</h5>
+                        <p class="text-uppercase fw-bold text-muted mb-2" style="font-size: 0.8rem; letter-spacing: 1px; color: var(--primary-color) !important;">BDS, MDS</p>
+                        <p class="text-muted mb-0" style="font-size: 0.9rem;">Child Specialist</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="consultant-card">
+                        <div class="consultant-icon">
+                            <i class="fas fa-tooth"></i>
+                        </div>
+                        <h5 class="fw-bold mb-1">Dr. Roshan</h5>
+                        <p class="text-uppercase fw-bold text-muted mb-2" style="font-size: 0.8rem; letter-spacing: 1px; color: var(--primary-color) !important;">BDS, MDS</p>
+                        <p class="text-muted mb-0" style="font-size: 0.9rem;">Implantologist</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="consultant-card">
+                        <div class="consultant-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h5 class="fw-bold mb-1">Dr. Christeena</h5>
+                        <p class="text-uppercase fw-bold text-muted mb-2" style="font-size: 0.8rem; letter-spacing: 1px; color: var(--primary-color) !important;">BDS, MDS</p>
+                        <p class="text-muted mb-0" style="font-size: 0.9rem;">Consultant Dental Surgeon</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <!-- Before & After Section -->
-    <section id="gallery" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Before & After Transformations</h2>
-                <p class="text-muted">See the real results our patients have achieved through our treatments.</p>
-            </div>
-            
-            <div class="row g-4">
-                <!-- Transformation 1 -->
-                <div class="col-md-6">
-                    <div class="row g-2">
-                        <div class="col-6">
-                            <div class="ba-card">
-                                <span class="ba-label">Before</span>
-                                <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&q=80&w=400" class="ba-img" alt="Teeth Before">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="ba-card">
-                                <span class="ba-label" style="background-color: #2c3e50;">After</span>
-                                <img src="https://images.unsplash.com/photo-1581585093384-93dde93f1e10?auto=format&fit=crop&q=80&w=400" class="ba-img" alt="Teeth After">
-                            </div>
-                        </div>
-                    </div>
-                    <h5 class="text-center mt-3 fw-bold">Teeth Whitening</h5>
-                </div>
-
-                <!-- Transformation 2 -->
-                <div class="col-md-6">
-                    <div class="row g-2">
-                        <div class="col-6">
-                            <div class="ba-card">
-                                <span class="ba-label">Before</span>
-                                <img src="https://images.unsplash.com/photo-1606811971618-4486d14ad318?auto=format&fit=crop&q=80&w=400" class="ba-img" alt="Braces Before">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="ba-card">
-                                <span class="ba-label" style="background-color: #2c3e50;">After</span>
-                                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=400" class="ba-img" alt="Braces After">
-                            </div>
-                        </div>
-                    </div>
-                    <h5 class="text-center mt-3 fw-bold">Orthodontic Alignment</h5>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Other Works / Clinic Gallery Section -->
     <section class="py-5 bg-light">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Other Works & Clinic</h2>
-                <p class="text-muted">A glimpse into our state-of-the-art clinic and happy patients.</p>
+                <h2 class="fw-bold">Our Clinic</h2>
+                <p class="text-muted">A glimpse into our state-of-the-art clinic.</p>
             </div>
             
-            <div class="row">
+            <div class="row g-4">
                 <!-- Work 1 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="work-card">
-                        <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&q=80&w=600" class="work-img" alt="Clinic Interior">
+                        <img src="images/Clinic/clinic.png" class="work-img" alt="Clinic Exterior">
                         <div class="work-overlay">
-                            <h5 class="mb-0">Modern Clinic</h5>
+                            <h5>Modern Exterior</h5>
                             <small>State-of-the-art facility</small>
                         </div>
                     </div>
@@ -360,9 +617,9 @@
                 <!-- Work 2 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="work-card">
-                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=600" class="work-img" alt="Dental Equipment">
+                        <img src="images/Hero/Hero.png" class="work-img" alt="Dental Operatory">
                         <div class="work-overlay">
-                            <h5 class="mb-0">Advanced Tech</h5>
+                            <h5>Advanced Tech</h5>
                             <small>Latest dental equipment</small>
                         </div>
                     </div>
@@ -371,9 +628,9 @@
                 <!-- Work 3 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="work-card">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=600" class="work-img" alt="Happy Patient">
+                        <img src="images/Clinic/reception.png" class="work-img" alt="Reception Area">
                         <div class="work-overlay">
-                            <h5 class="mb-0">Happy Patients</h5>
+                            <h5>Relaxing Reception</h5>
                             <small>Smiles are our priority</small>
                         </div>
                     </div>
@@ -382,7 +639,7 @@
         </div>
     </section>
 
-    <!-- About Section (New Format) -->
+    <!-- About Section -->
     <section id="about" class="py-5">
         <div class="container">
             <!-- Centered Introduction -->
@@ -422,32 +679,118 @@
                 </div>
             </div>
 
-            <!-- Mission, Vision, Values -->
-            <div class="row g-4 text-center mt-4">
-                <div class="col-md-4">
-                    <div class="feature-block p-4">
-                        <div class="icon-box"><i class="fas fa-bullseye"></i></div>
-                        <h5 class="fw-bold">Our Mission</h5>
-                        <p class="text-muted">To deliver exceptional, patient-centered dental care using advanced technology in a relaxing and safe environment.</p>
+    <!-- Before & After Section -->
+    <section id="gallery" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Before & After Transformations</h2>
+                <p class="text-muted">See the real results our patients have achieved through our treatments.</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Transformation 1 -->
+                <div class="col-md-6">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <div class="ba-card">
+                                <span class="ba-label">Before</span>
+                                <img src="images/Transformations/before1.png" class="ba-img" alt="Teeth Before">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="ba-card">
+                                <span class="ba-label" style="background-color: #2c3e50;">After</span>
+                                <img src="images/Transformations/after1.png" class="ba-img" alt="Teeth After">
+                            </div>
+                        </div>
                     </div>
+                    <h5 class="text-center mt-3 fw-bold">Teeth Whitening</h5>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-block p-4">
-                        <div class="icon-box"><i class="fas fa-eye"></i></div>
-                        <h5 class="fw-bold">Our Vision</h5>
-                        <p class="text-muted">To be the leading dental clinic in the region, recognized for innovation, trust, and transforming smiles.</p>
+
+                <!-- Transformation 2 -->
+                <div class="col-md-6">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <div class="ba-card">
+                                <span class="ba-label">Before</span>
+                                <img src="images/Transformations/before2.png" class="ba-img" alt="Braces Before">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="ba-card">
+                                <span class="ba-label" style="background-color: #2c3e50;">After</span>
+                                <img src="images/Transformations/after2.png" class="ba-img" alt="Braces After">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-block p-4">
-                        <div class="icon-box"><i class="fas fa-heart"></i></div>
-                        <h5 class="fw-bold">Our Values</h5>
-                        <p class="text-muted">Compassion, integrity, and excellence in every procedure, ensuring the highest standard of care for all.</p>
-                    </div>
+                    <h5 class="text-center mt-3 fw-bold">Orthodontic Alignment</h5>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Testimonials Section (100% Free & Manual) -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">What Our Patients Say</h2>
+            <p class="text-muted">Real reviews from our happy patients on Google.</p>
+            <!-- Link to your actual Google Reviews page -->
+            <a href="https://www.google.co.in/maps/place/White+Dental+Care/@10.6395334,76.1534844,17z/data=!4m8!3m7!1s0x3ba7ea388fd1cc87:0xd53333fb61ba8faf!8m2!3d10.6395281!4d76.1560593!9m1!1b1!16s%2Fg%2F11hczkxrdf?entry=ttu&g_ep=EgoyMDI2MDcyNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="text-decoration-none fw-bold" style="color: var(--primary-color);">
+                <i class="fab fa-google me-1"></i> See all reviews on Google
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <!-- Review 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 p-4 border-0 shadow-sm" style="border-radius: 15px;">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="me-3 bg-warning text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; font-weight: 600;">A</div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">Stalin AX</h6>
+                            <div style="color: #fbbc04;">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted fst-italic mb-0" style="font-size: 0.95rem;">"I visited today , and I had a great experience with Dr.Edbert Simon and team . They cleared all the concerns and doubts and given me the best treatment options and suggestions. I will strongly recommended to others 👌 …</p>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 p-4 border-0 shadow-sm" style="border-radius: 15px;">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="me-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; font-weight: 600;">S</div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">ILYAS KARUPPAM VEETTIL HOUSE</h6>
+                            <div style="color: #fbbc04;">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted fst-italic mb-0" style="font-size: 0.95rem;">"Had a great experience at white dental care! The doctors are very skilled and friendly, the staff is welcoming, and the service is excellent. The clinic is comfortable, and the pricing is budget-friendly. Highly recommend!"</p>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 p-4 border-0 shadow-sm" style="border-radius: 15px;">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="me-3 bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; font-weight: 600;">M</div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">AISWARYA SUDHEER</h6>
+                            <div style="color: #fbbc04;">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted fst-italic mb-0" style="font-size: 0.95rem;">"Good doctors and staffs. Affordable price also"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-5 bg-light">
@@ -462,7 +805,7 @@
                         <div class="me-3"><i class="fas fa-map-marker-alt fa-lg" style="color: var(--primary-color);"></i></div>
                         <div>
                             <h6 class="mb-0 fw-bold">Our Location</h6>
-                            <p class="mb-0 text-muted">123 Dental Lane, Medical Plaza, City Center</p>
+                            <p class="mb-0 text-muted">Near Karengal Auditorium, Post office junction, Velur, Thrissur, Kerala 680601</p>
                         </div>
                     </div>
 
@@ -470,7 +813,7 @@
                         <div class="me-3"><i class="fas fa-phone fa-lg" style="color: var(--primary-color);"></i></div>
                         <div>
                             <h6 class="mb-0 fw-bold">Call Us</h6>
-                            <a href="tel:+919876543210" class="text-decoration-none text-muted">+91 98765 43210</a>
+                            <a href="tel:+919725892335" class="text-decoration-none text-muted">+91 97258 92335</a>
                         </div>
                     </div>
 
@@ -483,13 +826,13 @@
                     </div>
 
                     <div class="d-flex gap-2 mb-4">
-                        <a href="tel:+919876543210" class="btn btn-primary"><i class="fas fa-phone me-2"></i> Call Now</a>
-                        <a href="https://wa.me/919876543210" class="btn btn-success"><i class="fab fa-whatsapp me-2"></i> WhatsApp</a>
+                        <a href="tel:+919725892335" class="btn btn-primary"><i class="fas fa-phone me-2"></i> Call Now</a>
+                        <a href="https://wa.me/919725892335" class="btn btn-success"><i class="fab fa-whatsapp me-2"></i> WhatsApp</a>
                     </div>
 
                     <hr>
                     <h5>Opening Hours</h5>
-                    <p class="mb-0 text-muted">Mon - Sat: 9:00 AM - 8:00 PM</p>
+                    <p class="mb-0 text-muted">Mon - Sat: 9:00 AM - 6:30 PM</p>
                     <p class="text-muted">Sunday: Emergency Only</p>
                 </div>
                 
@@ -514,21 +857,46 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>&copy; 2023 SmileCare Dental Clinic. All Rights Reserved.</p>
+            <p>&copy; <span id="currentYear"></span> White Dental Care. All Rights Reserved.</p>
             <div class="social-links">
                 <a href="#" class="text-white mx-2"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-google"></i></a>
+                <a href="https://www.instagram.com/_white_dental_care?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.google.co.in/maps/place/White+Dental+Care/@10.6395334,76.1534844,17z/data=!4m8!3m7!1s0x3ba7ea388fd1cc87:0xd53333fb61ba8faf!8m2!3d10.6395281!4d76.1560593!9m1!1b1!16s%2Fg%2F11hczkxrdf?entry=ttu" target="_blank" class="text-white mx-2"><i class="fab fa-google"></i></a>
             </div>
         </div>
     </footer>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/919876543210" class="whatsapp-btn shadow">
+    <a href="https://wa.me/919725892335" class="whatsapp-btn shadow">
         <i class="fab fa-whatsapp"></i> Chat with Us
     </a>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Script for Show All Services Toggle -->
+    <script>
+        document.getElementById('toggleServicesBtn').addEventListener('click', function() {
+            var hiddenServices = document.querySelectorAll('.service-hidden');
+            var btnText = this.innerHTML;
+            
+            hiddenServices.forEach(function(service) {
+                service.classList.toggle('show-service');
+            });
+
+            if (btnText.includes('Show All')) {
+                this.innerHTML = 'Show Less <i class="fas fa-chevron-up ms-2"></i>';
+            } else {
+                this.innerHTML = 'Show All Services <i class="fas fa-chevron-down ms-2"></i>';
+            }
+        });
+    </script>
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Auto-update Year Script -->
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
