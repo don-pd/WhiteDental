@@ -240,27 +240,99 @@
             font-weight: 600;
             margin-bottom: 0.2rem;
         }
-
         /* About Section */
         .stat-card {
             background-color: white;
             border: 1px solid var(--border-color);
-            border-radius: 15px;
+            border-radius: 20px;
             transition: all 0.3s ease;
+            padding: 2rem 1rem;
+            text-align: center;
+            height: 100%;
         }
         .stat-card:hover { 
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: rgba(0, 168, 168, 0.3);
+        }
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            opacity: 0.8;
         }
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--secondary-color);
+            line-height: 1;
+            margin-bottom: 0.5rem;
         }
-        .feature-block i {
-            font-size: 2.5rem;
+
+        /* About Feature Cards */
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background-color: var(--light-bg);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+        .feature-item:hover {
+            background-color: #ffffff;
+            border-color: var(--border-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transform: translateY(-3px);
+        }
+        .feature-icon {
+            flex-shrink: 0;
+            width: 55px;
+            height: 55px;
+            background-color: rgba(0, 168, 168, 0.1);
             color: var(--primary-color);
-            margin-bottom: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1.2rem;
+        }
+        .feature-text h5 {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--secondary-color);
+        }
+        .feature-text p {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* About Video Styling */
+        .video-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 5px solid #ffffff;
+            outline: 1px solid var(--border-color);
+            background: #000;
+            line-height: 0;
+        }
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+            outline: none;
+        }
+        .video-wrapper video::-webkit-media-controls-panel {
+            background-image: linear-gradient(to bottom, rgba(0,168,168,0.3), rgba(0,0,0,0.7));
         }
 
         /* Footer */
@@ -493,7 +565,7 @@
                 <div class="col-md-6 col-lg-5">
                     <div class="doctor-card h-100">
                         <div class="doctor-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=400" class="doctor-img" alt="Dr. Edbert Simon.K">
+                            <img src="images/Doctors/doc2.jpeg" class="doctor-img" alt="Dr. Edbert Simon.K">
                         </div>
                         <div class="card-body p-4 text-center">
                             <h4 class="fw-bold mb-1">Dr. Edbert Simon.K</h4>
@@ -512,7 +584,7 @@
                 <div class="col-md-6 col-lg-5">
                     <div class="doctor-card h-100">
                         <div class="doctor-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=400" class="doctor-img" alt="Dr. Anu Edbert">
+                            <img src="images/Doctors/doc1.jpeg" class="doctor-img" alt="Dr. Anu Edbert">
                         </div>
                         <div class="card-body p-4 text-center">
                             <h4 class="fw-bold mb-1">Dr. Anu Edbert</h4>
@@ -617,7 +689,7 @@
                 <!-- Work 2 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="work-card">
-                        <img src="images/Hero/Hero.png" class="work-img" alt="Dental Operatory">
+                        <img src="images/Clinic/hero.png" class="work-img" alt="Dental Operatory">
                         <div class="work-overlay">
                             <h5>Advanced Tech</h5>
                             <small>Latest dental equipment</small>
@@ -639,45 +711,92 @@
         </div>
     </section>
 
+    
     <!-- About Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <!-- Centered Introduction -->
-            <div class="row justify-content-center text-center mb-5">
-                <div class="col-lg-8">
-                    <p class="text-uppercase fw-bold mb-2" style="color: var(--primary-color); letter-spacing: 2px; font-size: 0.9rem;">About Us</p>
-                    <h2 class="fw-bold mb-4">Your Trusted Partner in Dental Health</h2>
-                    <p class="text-muted lead">At White Dental Care, we are dedicated to providing top-quality dental treatments in a comfortable and welcoming environment. Our team uses the latest technology to ensure painless and effective procedures, giving you a reason to smile every day.</p>
+<section id="about" class="py-5">
+    <div class="container">
+        <!-- Centered Introduction -->
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <p class="text-uppercase fw-bold mb-2" style="color: var(--primary-color); letter-spacing: 2px; font-size: 0.9rem;">About Us</p>
+                <h2 class="fw-bold mb-4">Your Trusted Partner in Dental Health</h2>
+                <p class="text-muted lead">At White Dental Care, we are dedicated to providing top-quality dental treatments in a comfortable and welcoming environment. Our team uses the latest technology to ensure painless and effective procedures, giving you a reason to smile every day.</p>
+            </div>
+        </div>
+
+        <!-- Video & Features Row -->
+        <div class="row g-4 align-items-center mb-5">
+            <!-- Video Column -->
+            <div class="col-lg-7">
+                <div class="video-wrapper shadow-sm" style="border-radius: 15px; overflow: hidden; border: 1px solid var(--border-color);">
+                    <video controls preload="metadata" poster="images/Clinic/cover.png" style="width: 100%; height: auto; display: block; background: #000;">
+                        <!-- Replace the src below with your actual local video file path -->
+                        <source src="images/Clinic/videotour.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
+                <p class="text-center text-muted mt-3 mb-0 fst-italic" style="font-size: 0.9rem;">
+                    <i class="fas fa-play-circle me-1" style="color: var(--primary-color);"></i> Take a virtual tour of our clinic
+                </p>
             </div>
 
-            <!-- Statistics Row -->
-            <div class="row g-4 text-center mb-5">
-                <div class="col-md-3 col-6">
-                    <div class="card h-100 p-4 stat-card">
-                        <div class="stat-number">15+</div>
-                        <p class="text-muted mb-0 mt-2 fw-bold">Years Experience</p>
+            <!-- Features Column -->
+            <div class="col-lg-5">
+                <div class="feature-block">
+                    <div class="d-flex align-items-start mb-4">
+                        <i class="fas fa-heart me-3 mt-1" style="font-size: 2rem; color: var(--primary-color);"></i>
+                        <div>
+                            <h5 class="fw-bold mb-1">Patient-First Care</h5>
+                            <p class="text-muted mb-0" style="font-size: 0.95rem;">Gentle, personalized treatment plans designed around your comfort and needs.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="card h-100 p-4 stat-card">
-                        <div class="stat-number">10k+</div>
-                        <p class="text-muted mb-0 mt-2 fw-bold">Happy Patients</p>
+                    <div class="d-flex align-items-start mb-4">
+                        <i class="fas fa-microscope me-3 mt-1" style="font-size: 2rem; color: var(--primary-color);"></i>
+                        <div>
+                            <h5 class="fw-bold mb-1">Advanced Technology</h5>
+                            <p class="text-muted mb-0" style="font-size: 0.95rem;">State-of-the-art equipment for accurate diagnosis and painless procedures.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="card h-100 p-4 stat-card">
-                        <div class="stat-number">25+</div>
-                        <p class="text-muted mb-0 mt-2 fw-bold">Expert Doctors</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="card h-100 p-4 stat-card">
-                        <div class="stat-number">40+</div>
-                        <p class="text-muted mb-0 mt-2 fw-bold">Dental Services</p>
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-shield-alt me-3 mt-1" style="font-size: 2rem; color: var(--primary-color);"></i>
+                        <div>
+                            <h5 class="fw-bold mb-1">Safe & Hygienic</h5>
+                            <p class="text-muted mb-0" style="font-size: 0.95rem;">Strict sterilization protocols ensuring complete safety for every patient.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Statistics Row -->
+        <div class="row g-4 text-center mb-5">
+            <div class="col-md-3 col-6">
+                <div class="card h-100 p-4 stat-card">
+                    <div class="stat-number">15+</div>
+                    <p class="text-muted mb-0 mt-2 fw-bold">Years Experience</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card h-100 p-4 stat-card">
+                    <div class="stat-number">10k+</div>
+                    <p class="text-muted mb-0 mt-2 fw-bold">Happy Patients</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card h-100 p-4 stat-card">
+                    <div class="stat-number">25+</div>
+                    <p class="text-muted mb-0 mt-2 fw-bold">Expert Doctors</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card h-100 p-4 stat-card">
+                    <div class="stat-number">40+</div>
+                    <p class="text-muted mb-0 mt-2 fw-bold">Dental Services</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Before & After Section -->
     <section id="gallery" class="py-5">
@@ -704,7 +823,7 @@
                             </div>
                         </div>
                     </div>
-                    <h5 class="text-center mt-3 fw-bold">Teeth Whitening</h5>
+                    <h5 class="text-center mt-3 fw-bold"></h5>
                 </div>
 
                 <!-- Transformation 2 -->
@@ -723,7 +842,7 @@
                             </div>
                         </div>
                     </div>
-                    <h5 class="text-center mt-3 fw-bold">Orthodontic Alignment</h5>
+                    <h5 class="text-center mt-3 fw-bold"></h5>
                 </div>
             </div>
         </div>
@@ -821,13 +940,13 @@
                         <div class="me-3"><i class="fas fa-envelope fa-lg" style="color: var(--primary-color);"></i></div>
                         <div>
                             <h6 class="mb-0 fw-bold">Email Us</h6>
-                            <a href="mailto:contact@smilecare.com" class="text-decoration-none text-muted">contact@smilecare.com</a>
+                            <a href="mailto:edbertwhitesimon12@gmail.com" class="text-decoration-none text-muted">edbertwhitesimon12@gmail.com</a>
                         </div>
                     </div>
 
                     <div class="d-flex gap-2 mb-4">
                         <a href="tel:+919725892335" class="btn btn-primary"><i class="fas fa-phone me-2"></i> Call Now</a>
-                        <a href="https://wa.me/919725892335" class="btn btn-success"><i class="fab fa-whatsapp me-2"></i> WhatsApp</a>
+                        <a href="https://wa.me/917510541940" class="btn btn-success"><i class="fab fa-whatsapp me-2"></i> WhatsApp</a>
                     </div>
 
                     <hr>
@@ -867,7 +986,7 @@
     </footer>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/919725892335" class="whatsapp-btn shadow">
+    <a href="https://wa.me/917510541940" class="whatsapp-btn shadow">
         <i class="fab fa-whatsapp"></i> Chat with Us
     </a>
 
@@ -891,12 +1010,32 @@
             }
         });
     </script>
-    <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Auto-update Year Script -->
-<script>
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-</script>
+    <!-- Auto-close Mobile Navbar on Click -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('#navbarNav .nav-link, #navbarNav .btn');
+            const navbarCollapse = document.getElementById('navbarNav');
+            
+            // Initialize Bootstrap collapse instance
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                toggle: false
+            });
+
+            navLinks.forEach(function (link) {
+                link.addEventListener('click', function () {
+                    // Only close if the menu is currently open (mobile view)
+                    if (navbarCollapse.classList.contains('show')) {
+                        bsCollapse.hide();
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Auto-update Year Script -->
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
