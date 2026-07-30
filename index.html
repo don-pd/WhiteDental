@@ -216,7 +216,8 @@
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-        .work-card:hover .work-img {
+        .work-card:hover .work-img,
+        .work-card.zoom-in .work-img {
             transform: scale(1.08);
         }
         .work-overlay {
@@ -369,7 +370,7 @@
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item"><a class="btn btn-primary ms-lg-3 text-white" href="tel:+1234567890">Call Now</a></li>
+                    <li class="nav-item"><a class="btn btn-primary ms-lg-3 text-white" href="tel:+919725892335">Call Now</a></li>
                 </ul>
             </div>
         </div>
@@ -957,16 +958,7 @@
                 
                 <!-- Right Side: Google Map Embed -->
                 <div class="col-lg-6">
-                    <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3921.2207552876393!2d76.1644069!3d10.6399511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDM4JzIzLjgiTiA3NsKwMDknNTEuOSJF!5e0!3m2!1sen!2sin!4v1784961238226!5m2!1sen!2sin" 
-                            width="100%" 
-                            height="450" 
-                            style="border:0; min-height: 450px;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="strict-origin-when-cross-origin">
-                        </iframe>
+                    <div class="card border-0 shadow-sm rounded-3 overflow-hidden"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3921.2261938024603!2d76.1560593!3d10.6395281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7ea388fd1cc87%3A0xd53333fb61ba8faf!2sWhite%20Dental%20Care!5e0!3m2!1sen!2sin!4v1785417624621!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                     </div>
                 </div>
             </div>
@@ -1032,6 +1024,41 @@
             });
         });
     </script>
+
+    
+           <!-- Auto-Zoom Clinic Images on Scroll Script (Mobile Only) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if the screen is mobile-sized (Bootstrap lg breakpoint is 992px)
+            if (window.innerWidth < 992) {
+                const workCards = document.querySelectorAll('.work-card');
+                
+                // Options: trigger when 50% of the image is visible on the screen
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.5 
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Add the zoom class when it enters the screen
+                            entry.target.classList.add('zoom-in');
+                            // Stop observing it once it has zoomed (so it doesn't reverse)
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                // Start watching all the clinic images
+                workCards.forEach(card => {
+                    observer.observe(card);
+                });
+            }
+        });
+    </script>
+
 
     <!-- Auto-update Year Script -->
     <script>
