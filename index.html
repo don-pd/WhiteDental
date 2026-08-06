@@ -344,6 +344,27 @@
             height: 100%;
             text-align: center;
         }
+        .consultant-hidden {
+            display: none;
+        }
+        .consultant-hidden.show-consultant {
+            display: block;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        .consultant-hidden {
+            display: none;
+        }
+        .consultant-hidden.show-consultant {
+            display: block;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        .consultant-hidden {
+            display: none;
+        }
+        .consultant-hidden.show-consultant {
+            display: block;
+            animation: fadeInUp 0.5s ease forwards;
+        }
         .consultant-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.04);
@@ -870,7 +891,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 consultant-hidden">
                     <div class="consultant-card">
                         <div class="consultant-icon">
                             <i class="fas fa-user-md"></i>
@@ -881,7 +902,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 consultant-hidden">
                     <div class="consultant-card">
                         <div class="consultant-icon">
                             <i class="fas fa-star"></i>
@@ -892,7 +913,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 consultant-hidden">
                     <div class="consultant-card">
                         <div class="consultant-icon">
                             <i class="fas fa-teeth"></i>
@@ -903,7 +924,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 consultant-hidden">
                     <div class="consultant-card">
                         <div class="consultant-icon">
                             <i class="fas fa-hand-holding-medical"></i>
@@ -914,7 +935,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 consultant-hidden">
                     <div class="consultant-card">
                         <div class="consultant-icon">
                             <i class="fas fa-x-ray"></i>
@@ -925,7 +946,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 consultant-hidden">
                     <div class="consultant-card">
                         <div class="consultant-icon">
                             <i class="fas fa-shield-alt"></i>
@@ -936,6 +957,13 @@
                     </div>
                 </div>
             </div>
+
+            <div class="text-center mt-4">
+                <button id="toggleConsultantsBtn" class="btn btn-outline-primary px-4 py-2" style="border-color: var(--primary-color); color: var(--primary-color); font-weight: 600; border-radius: 50px;">
+                    Show All Consultants <i class="fas fa-chevron-down ms-2"></i>
+                </button>
+            </div>
+
         </div>
     </section>
 
@@ -1368,6 +1396,19 @@
         });
     </script>
 
+
+    <script>
+        document.getElementById('toggleConsultantsBtn').addEventListener('click', function() {
+            var hidden = document.querySelectorAll('.consultant-hidden');
+            var btnText = this.innerHTML;
+            hidden.forEach(function(el) { el.classList.toggle('show-consultant'); });
+            if (btnText.includes('Show All')) {
+                this.innerHTML = 'Show Less <i class="fas fa-chevron-up ms-2"></i>';
+            } else {
+                this.innerHTML = 'Show All Consultants <i class="fas fa-chevron-down ms-2"></i>';
+            }
+        });
+    </script>
     <!-- Auto-close Mobile Navbar on Click -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
